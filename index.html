@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jocheilem Lau — Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --blue: #1a3a6b;
+    --accent: #2e7df7;
+    --accent-light: #e8f1fe;
+    --gold: #f0a500;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --bg: #f9fafb;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    color: var(--text);
+    background: var(--white);
+    line-height: 1.6;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    background: rgba(255,255,255,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    display: flex; align-items: center; justify-content: space-between;
+    height: 60px;
+    z-index: 100;
+  }
+  .nav-logo {
+    font-family: 'DM Serif Display', serif;
+    font-size: 1.2rem;
+    color: var(--navy);
+    text-decoration: none;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    text-decoration: none;
+    color: var(--muted);
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--accent); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 60%, #1e4db7 100%);
+    display: flex; align-items: center; justify-content: center;
+    text-align: center;
+    padding: 80px 2rem 4rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(255,255,255,0.06)'/%3E%3C/svg%3E");
+    background-size: 40px 40px;
+  }
+  .hero-content { position: relative; z-index: 1; max-width: 700px; }
+  .hero-tag {
+    display: inline-block;
+    background: rgba(255,255,255,0.12);
+    color: rgba(255,255,255,0.85);
+    border: 1px solid rgba(255,255,255,0.2);
+    border-radius: 100px;
+    padding: 0.3rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 500;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+  .hero h1 {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(3rem, 8vw, 5.5rem);
+    color: white;
+    line-height: 1.05;
+    margin-bottom: 1rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: #93c5fd;
+  }
+  .hero-subtitle {
+    color: rgba(255,255,255,0.7);
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+    font-weight: 300;
+  }
+  .hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary {
+    background: var(--accent);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.95rem;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+  }
+  .btn-primary:hover { background: #1a6de0; transform: translateY(-1px); }
+  .btn-outline {
+    background: transparent;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    text-decoration: none;
+    font-weight: 500;
+    font-size: 0.95rem;
+    border: 1px solid rgba(255,255,255,0.35);
+    transition: all 0.2s;
+  }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+  .hero-stats {
+    display: flex; gap: 3rem; justify-content: center;
+    margin-top: 4rem;
+    padding-top: 2rem;
+    border-top: 1px solid rgba(255,255,255,0.15);
+  }
+  .stat-num {
+    font-family: 'DM Serif Display', serif;
+    font-size: 2rem;
+    color: white;
+  }
+  .stat-label { font-size: 0.8rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.05em; }
+
+  /* SECTIONS */
+  section { padding: 5rem 2rem; }
+  .container { max-width: 1000px; margin: 0 auto; }
+  .section-tag {
+    display: inline-block;
+    background: var(--accent-light);
+    color: var(--accent);
+    border-radius: 100px;
+    padding: 0.3rem 1rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.07em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    color: var(--navy);
+    line-height: 1.15;
+    margin-bottom: 1rem;
+  }
+  .section-desc { color: var(--muted); font-size: 1rem; max-width: 520px; margin-bottom: 3rem; }
+
+  /* ABOUT */
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start; }
+  .about-text p { color: var(--muted); line-height: 1.8; margin-bottom: 1rem; font-size: 0.95rem; }
+  .skills-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0.5rem; margin-top: 1.5rem; }
+  .skill-pill {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 0.5rem 0.75rem;
+    font-size: 0.85rem;
+    color: var(--text);
+    display: flex; align-items: center; gap: 0.5rem;
+  }
+  .skill-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
+  .about-highlights { display: flex; flex-direction: column; gap: 1rem; }
+  .highlight-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex; gap: 1rem; align-items: flex-start;
+  }
+  .highlight-icon {
+    width: 40px; height: 40px; border-radius: 10px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.2rem; flex-shrink: 0;
+  }
+  .highlight-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--navy); margin-bottom: 0.2rem; }
+  .highlight-card p { font-size: 0.82rem; color: var(--muted); }
+
+  /* EXPERIENCE */
+  .exp-section { background: var(--bg); }
+  .timeline { position: relative; padding-left: 2rem; }
+  .timeline::before {
+    content: ''; position: absolute; left: 7px; top: 0; bottom: 0;
+    width: 2px; background: var(--border);
+  }
+  .timeline-item { position: relative; margin-bottom: 2.5rem; }
+  .timeline-dot {
+    position: absolute; left: -2rem; top: 4px;
+    width: 14px; height: 14px; border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid white;
+    box-shadow: 0 0 0 2px var(--accent);
+  }
+  .timeline-header { display: flex; align-items: flex-start; justify-content: space-between; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 0.5rem; }
+  .timeline-title { font-weight: 600; color: var(--navy); font-size: 1rem; }
+  .timeline-org { font-size: 0.85rem; color: var(--accent); font-weight: 500; margin-bottom: 0.25rem; }
+  .timeline-date {
+    font-size: 0.78rem; color: var(--muted);
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 100px;
+    padding: 0.2rem 0.75rem;
+    white-space: nowrap;
+  }
+  .timeline-body { font-size: 0.88rem; color: var(--muted); line-height: 1.7; }
+  .timeline-body li { margin-bottom: 0.3rem; }
+
+  /* AWARDS */
+  .awards-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem; }
+  .award-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    display: flex; gap: 1rem; align-items: center;
+    transition: all 0.2s;
+  }
+  .award-card:hover { border-color: var(--accent); transform: translateY(-2px); box-shadow: 0 4px 20px rgba(46,125,247,0.1); }
+  .award-icon-wrap {
+    width: 44px; height: 44px; border-radius: 10px;
+    background: #fef3c7;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1.3rem; flex-shrink: 0;
+  }
+  .award-card h4 { font-size: 0.9rem; font-weight: 600; color: var(--navy); margin-bottom: 0.2rem; }
+  .award-card p { font-size: 0.8rem; color: var(--muted); }
+
+  /* PROJECTS */
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    transition: all 0.25s;
+  }
+  .project-card:hover { border-color: var(--accent); box-shadow: 0 8px 30px rgba(46,125,247,0.12); transform: translateY(-3px); }
+  .project-thumb {
+    width: 100%; height: 160px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 3rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .project-body { padding: 1.25rem; }
+  .project-tag {
+    display: inline-block;
+    font-size: 0.72rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.05em;
+    padding: 0.2rem 0.6rem; border-radius: 100px; margin-bottom: 0.5rem;
+  }
+  .tag-robotics { background: #e0f2fe; color: #0369a1; }
+  .tag-python { background: #fef3c7; color: #92400e; }
+  .tag-app { background: #f0fdf4; color: #166534; }
+  .project-body h3 { font-size: 1rem; font-weight: 600; color: var(--navy); margin-bottom: 0.4rem; }
+  .project-body p { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+  .project-links { display: flex; gap: 0.75rem; margin-top: 1rem; }
+  .project-link {
+    font-size: 0.82rem; font-weight: 500; color: var(--accent);
+    text-decoration: none; display: flex; align-items: center; gap: 0.3rem;
+  }
+  .project-link:hover { text-decoration: underline; }
+
+  /* MEDIA / GALLERY */
+  .gallery-section { background: var(--bg); }
+  .gallery-notice {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 2.5rem;
+    text-align: center;
+    color: var(--muted);
+  }
+  .gallery-notice .big-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+  .gallery-notice h3 { color: var(--navy); margin-bottom: 0.5rem; font-size: 1.1rem; }
+  .gallery-notice p { font-size: 0.9rem; max-width: 400px; margin: 0 auto; }
+  .gallery-placeholder-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .gallery-item {
+    border-radius: 12px;
+    overflow: hidden;
+    border: 2px dashed var(--border);
+    aspect-ratio: 4/3;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    color: var(--muted);
+    font-size: 0.82rem;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    background: var(--white);
+  }
+  .gallery-item:hover { border-color: var(--accent); color: var(--accent); }
+  .gallery-item .ph-icon { font-size: 1.8rem; }
+
+  /* CONTACT */
+  .contact-card {
+    background: linear-gradient(135deg, var(--navy) 0%, var(--blue) 100%);
+    border-radius: 20px;
+    padding: 3.5rem;
+    text-align: center;
+    color: white;
+    position: relative;
+    overflow: hidden;
+  }
+  .contact-card::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='1' fill='rgba(255,255,255,0.06)'/%3E%3C/svg%3E");
+    background-size: 40px 40px;
+  }
+  .contact-card > * { position: relative; z-index: 1; }
+  .contact-card h2 { font-family: 'DM Serif Display', serif; font-size: 2.2rem; margin-bottom: 0.75rem; }
+  .contact-card p { color: rgba(255,255,255,0.7); margin-bottom: 2rem; font-size: 0.95rem; }
+  .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+  .contact-link {
+    display: flex; align-items: center; gap: 0.5rem;
+    background: rgba(255,255,255,0.12);
+    border: 1px solid rgba(255,255,255,0.2);
+    color: white;
+    padding: 0.65rem 1.25rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { background: rgba(255,255,255,0.22); }
+
+  /* FOOTER */
+  footer {
+    padding: 1.5rem 2rem;
+    border-top: 1px solid var(--border);
+    text-align: center;
+    font-size: 0.82rem;
+    color: var(--muted);
+  }
+
+  @media (max-width: 640px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .hero-stats { gap: 2rem; }
+    .contact-card { padding: 2rem 1.5rem; }
+    nav { padding: 0 1rem; }
+    .nav-links { gap: 1rem; }
+    .nav-links li:nth-child(n+4) { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">JL</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#experience">Experience</a></li>
+    <li><a href="#awards">Awards</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="hero-tag">📍 Jakarta, Indonesia · Grade 9</div>
+    <h1>Jocheilem <em>Lau</em></h1>
+    <p class="hero-subtitle">Robotics Programmer · Student Leader · Problem Solver</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn-primary">View Projects</a>
+      <a href="#contact" class="btn-outline">Get in Touch</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="stat-num">8+</div>
+        <div class="stat-label">Awards Won</div>
+      </div>
+      <div>
+        <div class="stat-num">2</div>
+        <div class="stat-label">Intl Competitions</div>
+      </div>
+      <div>
+        <div class="stat-num">16<span style="font-size:1.2rem">/1347</span></div>
+        <div class="stat-label">I-Code Ranking</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-text">
+        <div class="section-tag">About Me</div>
+        <h2 class="section-title">Building robots,<br>writing code, leading teams.</h2>
+        <p>I'm a 9th grader at Springfield International School, Jakarta. I started my robotics journey with LEGO SPIKE Prime and Python, competing in the First Lego League — and now I'm leveling up to FIRST Tech Challenge with Java and custom metal robots.</p>
+        <p>Beyond tech, I love music (been playing piano since 2016 and recently joined a church choir), basketball, ping pong, and chess. I care about teamwork as much as code.</p>
+        <div class="skills-grid" style="margin-top:1.5rem">
+          <div class="skill-pill"><div class="skill-dot"></div> Python</div>
+          <div class="skill-pill"><div class="skill-dot"></div> Java</div>
+          <div class="skill-pill"><div class="skill-dot"></div> LEGO SPIKE Prime</div>
+          <div class="skill-pill"><div class="skill-dot"></div> Autonomous Robotics</div>
+          <div class="skill-pill"><div class="skill-dot"></div> Public Speaking</div>
+          <div class="skill-pill"><div class="skill-dot"></div> Leadership</div>
+        </div>
+      </div>
+      <div class="about-highlights">
+        <div class="highlight-card">
+          <div class="highlight-icon" style="background:#e0f2fe;">🤖</div>
+          <div>
+            <h4>Lead Programmer — FLL</h4>
+            <p>Led SIGMA Team's autonomous programs to national & international wins, and raised 65M IDR in sponsorships.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon" style="background:#f0fdf4;">🏆</div>
+          <div>
+            <h4>Multi-Competition Winner</h4>
+            <p>Champion's Award in Jakarta, Universal Design Award in Thailand, Best Robot Design in Singapore — all in FLL 2025–2026.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon" style="background:#fef3c7;">💡</div>
+          <div>
+            <h4>Maker & Event Leader</h4>
+            <p>Built a custom interactive game booth that served 50+ users and generated 48M IDR in revenue for Grade 8 Business Day.</p>
+          </div>
+        </div>
+        <div class="highlight-card">
+          <div class="highlight-icon" style="background:#fdf4ff;">🎹</div>
+          <div>
+            <h4>Classical Pianist (2016–now)</h4>
+            <p>10 years of piano, plus church choir since 2024. Music and technology are both about precision and creativity.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section class="exp-section" id="experience">
+  <div class="container">
+    <div class="section-tag">Experience</div>
+    <h2 class="section-title">What I've been building.</h2>
+    <p class="section-desc">From LEGO robots to metal hardware, from team programmer to project lead.</p>
+    <div class="timeline">
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-title">Programmer & Hardware Builder</div>
+            <div class="timeline-org">FIRST Tech Challenge (FTC) · CK Education</div>
+          </div>
+          <div class="timeline-date">Mar 2026 – Present</div>
+        </div>
+        <div class="timeline-body">
+          <ul style="padding-left:1.2rem">
+            <li>Transitioning from Python to Java to program complex robot movements and autonomous routines for the Feb 2027 FTC season.</li>
+            <li>Collaborating to build a custom metal-based robot, moving beyond LEGO to industrial-style hardware through weekly testing and prototyping.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-title">Lead Programmer</div>
+            <div class="timeline-org">First Lego League · CK Education (SIGMA Team)</div>
+          </div>
+          <div class="timeline-date">Dec 2024 – Mar 2026</div>
+        </div>
+        <div class="timeline-body">
+          <ul style="padding-left:1.2rem">
+            <li>Developed autonomous programs in Python for LEGO SPIKE Prime, leading the team to multiple national & international victories.</li>
+            <li>Helped raise 65 million IDR in sponsorships by presenting to executives at Pertamina, BCA Bank, and Dwidaya Tour & Travel.</li>
+            <li>Mentored younger members on Scratch (block-based coding) and guided them into more advanced programming logic.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:#f0a500; box-shadow:0 0 0 2px #f0a500;"></div>
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-title">Game Designer & Technical Lead</div>
+            <div class="timeline-org">Grade 8 Business Day Project · Springfield International School</div>
+          </div>
+          <div class="timeline-date">March 2025</div>
+        </div>
+        <div class="timeline-body">
+          <ul style="padding-left:1.2rem">
+            <li>Designed and engineered a custom interactive game booth, managing end-to-end technical build for 50+ users.</li>
+            <li>Coordinated event logistics and live troubleshooting — project generated 48 million IDR in revenue for the Grade 8 cohort.</li>
+          </ul>
+        </div>
+      </div>
+      <div class="timeline-item">
+        <div class="timeline-dot" style="background:#10b981; box-shadow:0 0 0 2px #10b981;"></div>
+        <div class="timeline-header">
+          <div>
+            <div class="timeline-title">Event Organizer Division Staff</div>
+            <div class="timeline-org">Student Council · Springfield International School</div>
+          </div>
+          <div class="timeline-date">2024 – 2025</div>
+        </div>
+        <div class="timeline-body">
+          <p>Organized school-wide events including a successful Valentine's Day fundraiser, coordinating logistics, marketing, and sales.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="container">
+    <div class="section-tag">Awards & Achievements</div>
+    <h2 class="section-title">Recognition across the globe.</h2>
+    <p class="section-desc">From Jakarta to Singapore, Thailand, and the Asia Pacific — here's what the hard work added up to.</p>
+    <div class="awards-grid">
+      <div class="award-card">
+        <div class="award-icon-wrap">🥇</div>
+        <div>
+          <h4>Champion's Award</h4>
+          <p>First Lego League Jakarta · Feb 2026</p>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon-wrap">🎨</div>
+        <div>
+          <h4>Universal Design Award</h4>
+          <p>First Lego League Thailand · Feb 2026</p>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon-wrap">🤖</div>
+        <div>
+          <h4>Best Robot Design</h4>
+          <p>First Lego League Singapore · Mar 2025</p>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon-wrap">🌟</div>
+        <div>
+          <h4>Core Values Award</h4>
+          <p>First Lego League Jakarta · Feb 2025</p>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon-wrap">🌏</div>
+        <div>
+          <h4>Asia Pacific Finals — Rank 16 / 1,347</h4>
+          <p>I-Code Global Hackathon · 2024</p>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon-wrap">🔬</div>
+        <div>
+          <h4>Gold Award</h4>
+          <p>Vanda National Junior Science Olympiad · 2024</p>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon-wrap">📐</div>
+        <div>
+          <h4>Bronze Award</h4>
+          <p>Singapore & Asian Schools Math Olympiad · 2024 & 2025</p>
+        </div>
+      </div>
+      <div class="award-card">
+        <div class="award-icon-wrap">🇺🇸</div>
+        <div>
+          <h4>Bronze Award</h4>
+          <p>American Mathematics Olympiad · 2024</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--bg)">
+  <div class="container">
+    <div class="section-tag">Projects</div>
+    <h2 class="section-title">Things I've built.</h2>
+    <p class="section-desc">Apps, robots, and tools — some just for fun, some for competition. Add your own links and screenshots below!</p>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-thumb" style="background: linear-gradient(135deg,#e0f2fe,#bfdbfe);">🤖</div>
+        <div class="project-body">
+          <span class="project-tag tag-robotics">Robotics</span>
+          <h3>FLL Autonomous Robot Program</h3>
+          <p>Python autonomous routines for LEGO SPIKE Prime, optimized for competition missions. Led team to multiple national & international wins.</p>
+          <div class="project-links">
+            <a href="#" class="project-link">View Code →</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb" style="background: linear-gradient(135deg,#fef3c7,#fde68a);">🎮</div>
+        <div class="project-body">
+          <span class="project-tag tag-python">Hardware + Design</span>
+          <h3>Interactive Game Booth</h3>
+          <p>Custom-engineered interactive game booth for Grade 8 Business Day. Built for durability across 50+ users and generated 48M IDR in revenue.</p>
+          <div class="project-links">
+            <a href="#gallery" class="project-link">See Photos →</a>
+          </div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb" style="background: linear-gradient(135deg,#f0fdf4,#bbf7d0);">💻</div>
+        <div class="project-body">
+          <span class="project-tag tag-app">App / Web</span>
+          <h3>Your Project Here</h3>
+          <p>Add a description of your app, school project, or personal experiment. Upload a screenshot and link to GitHub or a live demo.</p>
+          <div class="project-links">
+            <a href="#" class="project-link">Demo →</a>
+            <a href="#" class="project-link">GitHub →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery-section" id="gallery">
+  <div class="container">
+    <div class="section-tag">Gallery</div>
+    <h2 class="section-title">Photos & Videos.</h2>
+    <p class="section-desc">Moments from competitions, events, and behind-the-scenes building sessions. Upload your own photos and videos here!</p>
+
+    <div class="gallery-notice">
+      <div class="big-icon">📸</div>
+      <h3>Upload your photos & videos here</h3>
+      <p>Add images from FLL Jakarta, Thailand, Singapore, Business Day, and any other events. You can embed YouTube links for competition footage too!</p>
+    </div>
+
+    <div class="gallery-placeholder-grid">
+      <div class="gallery-item">
+        <div class="ph-icon">🏆</div>
+        <span>FLL Jakarta 2026</span>
+      </div>
+      <div class="gallery-item">
+        <div class="ph-icon">🌏</div>
+        <span>FLL Thailand 2026</span>
+      </div>
+      <div class="gallery-item">
+        <div class="ph-icon">🇸🇬</div>
+        <span>FLL Singapore 2025</span>
+      </div>
+      <div class="gallery-item">
+        <div class="ph-icon">🎮</div>
+        <span>Business Day 2025</span>
+      </div>
+      <div class="gallery-item">
+        <div class="ph-icon">🤖</div>
+        <span>Robot Build Sessions</span>
+      </div>
+      <div class="gallery-item">
+        <div class="ph-icon">▶️</div>
+        <span>Competition Video</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="container">
+    <div class="contact-card">
+      <h2>Let's Connect</h2>
+      <p>Whether you're a recruiter, competition organizer, fellow coder, or just curious — I'd love to hear from you.</p>
+      <div class="contact-links">
+        <a href="mailto:jocheilem.lau@gmail.com" class="contact-link">
+          ✉️ jocheilem.lau@gmail.com
+        </a>
+        <a href="#" class="contact-link">
+          🔗 LinkedIn
+        </a>
+        <a href="#" class="contact-link">
+          💻 GitHub
+        </a>
+        <a href="#" class="contact-link">
+          🌐 Website
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Jocheilem Lau · Jakarta, Indonesia · Made with ♥ and Python 🐍</p>
+</footer>
+
+<script>
+  document.querySelectorAll('a[href^="#"]').forEach(a => {
+    a.addEventListener('click', e => {
+      const t = document.querySelector(a.getAttribute('href'));
+      if (t) { e.preventDefault(); t.scrollIntoView({ behavior: 'smooth' }); }
+    });
+  });
+
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.style.opacity = 1; });
+  }, { threshold: 0.1 });
+
+  document.querySelectorAll('.award-card, .project-card, .timeline-item, .highlight-card').forEach(el => {
+    el.style.opacity = 0;
+    el.style.transition = 'opacity 0.5s ease';
+    observer.observe(el);
+  });
+</script>
+</body>
+</html>
