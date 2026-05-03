@@ -1,36 +1,53 @@
+/* 1. THE FRAME (The Container) */
 .slider-container {
     width: 100%;
-    max-width: 900px; 
+    max-width: 900px; /* This is the width you should use for editing photos */
     margin: 20px auto;
-    overflow: hidden !important; /* Prevents seeing the other photos */
+    overflow: hidden !important; /* This hides the photos waiting in line */
     border-radius: 15px;
+    background-color: #000;
     position: relative;
 }
 
+/* 2. THE STRIP (The Slider) */
 .slider {
-    display: flex !important; /* FORCES images to be in a horizontal row */
-    flex-direction: row !important; 
-    overflow-x: scroll !important; /* Enables the sliding action */
-    scroll-snap-type: x mandatory;
+    display: flex !important; /* Forces photos into a horizontal row */
+    flex-direction: row !important;
+    overflow-x: scroll !important; /* Enables the sliding movement */
+    scroll-snap-type: x mandatory; /* Makes it 'snap' to the next photo */
     scroll-behavior: smooth;
-    gap: 0; /* Ensures no space between slides */
+    touch-action: pan-x; /* Ensures swiping works on mobile */
 }
 
-/* Hide the scrollbar but keep the sliding functionality */
+/* Hide the ugly scrollbar at the bottom */
 .slider::-webkit-scrollbar {
     display: none;
 }
 
+/* 3. THE INDIVIDUAL BOX (The Slide) */
 .slide {
-    flex: 0 0 100% !important; /* Forces each slide to take up exactly 100% width */
-    width: 100%;
+    flex: 0 0 100% !important; /* Forces each slide to be exactly the container width */
+    min-width: 100%;
     scroll-snap-align: start;
     position: relative;
 }
 
+/* 4. THE ACTUAL PHOTO */
 .slide img {
     width: 100%;
-    height: 500px; /* Adjust height as needed */
-    object-fit: cover; /* Prevents stretching */
+    height: 500px; /* This is the height you should use for editing photos */
+    object-fit: contain; /* Keeps heads from being cropped */
     display: block;
+}
+
+/* 5. THE TEXT CAPTION */
+.slide-caption {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-family: sans-serif;
 }
