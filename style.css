@@ -1,0 +1,36 @@
+.slider-container {
+    width: 100%;
+    max-width: 900px; 
+    margin: 20px auto;
+    overflow: hidden !important; /* Prevents seeing the other photos */
+    border-radius: 15px;
+    position: relative;
+}
+
+.slider {
+    display: flex !important; /* FORCES images to be in a horizontal row */
+    flex-direction: row !important; 
+    overflow-x: scroll !important; /* Enables the sliding action */
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    gap: 0; /* Ensures no space between slides */
+}
+
+/* Hide the scrollbar but keep the sliding functionality */
+.slider::-webkit-scrollbar {
+    display: none;
+}
+
+.slide {
+    flex: 0 0 100% !important; /* Forces each slide to take up exactly 100% width */
+    width: 100%;
+    scroll-snap-align: start;
+    position: relative;
+}
+
+.slide img {
+    width: 100%;
+    height: 500px; /* Adjust height as needed */
+    object-fit: cover; /* Prevents stretching */
+    display: block;
+}
